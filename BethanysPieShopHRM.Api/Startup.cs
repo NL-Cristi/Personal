@@ -1,4 +1,5 @@
 using BethanysPieShopHRM.Api.Models;
+using FileContextCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -22,8 +23,10 @@ namespace BethanysPieShopHRM.Api
         {
             //services.AddDbContext<AppDbContext>(options => options.UseInMemoryDatabase(databaseName: "BethanysPieShopHRM"));
 
-            services.AddDbContext<AppDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //services.AddDbContext<AppDbContext>(options =>
+            //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddDbContext<AppDbContext>(options => options.UseFileContextDatabase());
+
 
             services.AddScoped<ICountryRepository, CountryRepository>();
             services.AddScoped<IRegionRepository, RegionRepository>();
@@ -36,7 +39,7 @@ namespace BethanysPieShopHRM.Api
             });
 
             services.AddControllers();
-                //.AddJsonOptions(options => options.JsonSerializerOptions.ca);
+            //.AddJsonOptions(options => options.JsonSerializerOptions.ca);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -53,7 +56,7 @@ namespace BethanysPieShopHRM.Api
 
             app.UseAuthorization();
 
-           // app.UseCors("Open");
+            // app.UseCors("Open");
 
             app.UseEndpoints(endpoints =>
             {
