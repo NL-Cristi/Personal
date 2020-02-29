@@ -79,6 +79,7 @@ namespace BethanysPieShopHRM.Server.Pages
 
             OfficeId = Employee.OfficeId.ToString();
             RegionId = Employee.RegionId.ToString();
+            PodId = Employee.PodId.ToString();
 
             JobCategoryId = Employee.JobCategoryId.ToString();
         }
@@ -86,10 +87,10 @@ namespace BethanysPieShopHRM.Server.Pages
         protected async Task HandleValidSubmit()
         {
             Saved = false;
+            Employee.JobCategoryId = int.Parse(JobCategoryId);
             Employee.OfficeId = int.Parse(OfficeId);
             Employee.RegionId = int.Parse(RegionId);
-
-            Employee.JobCategoryId = int.Parse(JobCategoryId);
+            Employee.PodId = int.Parse(PodId);
 
             if (Employee.EmployeeId == 0) //new
             {

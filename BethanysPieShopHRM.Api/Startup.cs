@@ -27,11 +27,13 @@ namespace BethanysPieShopHRM.Api
             //    options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDbContext<AppDbContext>(options => options.UseFileContextDatabase());
 
-
+            services.AddScoped<ICityRepository, CityRepository>();
             services.AddScoped<ICountryRepository, CountryRepository>();
-            services.AddScoped<IRegionRepository, RegionRepository>();
-            services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddScoped<IJobCategoryRepository, JobCategoryRepository>();
+            services.AddScoped<IOfficeRepository, OfficeRepository>();
+            services.AddScoped<IPodRepository, PodRepository>();
+            services.AddScoped<IRegionRepository, RegionRepository>();
 
             services.AddCors(options =>
             {

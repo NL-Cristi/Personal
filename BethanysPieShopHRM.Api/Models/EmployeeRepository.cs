@@ -23,7 +23,12 @@ namespace BethanysPieShopHRM.Api.Models
 
         public Employee GetEmployeeById(int employeeId)
         {
-            return _appDbContext.Employees.FirstOrDefault(c => c.EmployeeId == employeeId);
+            var foundemployee = 
+                _appDbContext.Employees.Include(a => a.Office).Include(b => b.Region).Include(c => c.JobCategory).Include(e => e.Pod)
+                .Include(f => f.Office.Country).Include(g => g.Office.City).FirstOrDefault(c => c.EmployeeId == employeeId);
+                            
+
+            return foundemployee;
         }
 
         public Employee AddEmployee(Employee employee)

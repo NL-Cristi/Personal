@@ -44,6 +44,7 @@ namespace BethanysPieShopHRM.Server.Services
                 (await _httpClient.GetStreamAsync($"api/jobcategory"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
         }
 
+
         public async Task<JobCategory> GetJobCategoryDetails(int jobCategoryId)
         {
             return await JsonSerializer.DeserializeAsync<JobCategory>
