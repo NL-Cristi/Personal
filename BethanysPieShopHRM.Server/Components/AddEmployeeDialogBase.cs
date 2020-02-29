@@ -12,7 +12,7 @@ namespace BethanysPieShopHRM.Server.Components
     {
         public bool ShowDialog { get; set; }
 
-        public Employee Employee { get; set; } = new Employee { CountryId = 1, JobCategoryId = 1, RegionId = 3, JoinedDate = DateTime.Now };
+        public Employee Employee { get; set; } = new Employee { JobCategoryId = 2, OfficeId = 1, RegionId = 3, PodId = 1};
 
         [Parameter]
         public EventCallback<bool> CloseEventCallback { get; set; }
@@ -29,7 +29,7 @@ namespace BethanysPieShopHRM.Server.Components
 
         private void ResetDialog()
         {
-            Employee = new Employee { CountryId = 1, JobCategoryId = 1, RegionId = 3, JoinedDate = DateTime.Now };
+            Employee = new Employee { JobCategoryId = 2, OfficeId = 1, RegionId = 3, PodId = 1 };
         }
 
         public void Close()

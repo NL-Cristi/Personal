@@ -9,6 +9,9 @@ namespace BethanysPieShopHRM.Server.Services
     public interface IJobCategoryDataService
     {
         Task<IEnumerable<JobCategory>> GetAllJobCategories();
-        Task<JobCategory> GetJobCategoryById(int jobCategoryId);
+        Task<JobCategory> GetJobCategoryDetails(int jobcategoryId);
+        Task<JobCategory> AddJobCategory(JobCategory jobcategory);
+        Task UpdateJobCategory(JobCategory jobcategory);
+        Task DeleteJobCategory(int jobcategoryId);
     }
 }

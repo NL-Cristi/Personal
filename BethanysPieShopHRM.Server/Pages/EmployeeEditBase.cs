@@ -20,6 +20,12 @@ namespace BethanysPieShopHRM.Server.Pages
 
         [Inject]
         public IRegionDataService RegionDataService { get; set; }
+        [Inject]
+        public IOfficeDataService OfficeDataService { get; set; }
+        [Inject]
+        public IPodDataService PodDataService { get; set; }
+        [Inject]
+        public ICityDataService CityDataService { get; set; }
 
         [Inject]
         public NavigationManager NavigationManager { get; set; }
@@ -29,14 +35,18 @@ namespace BethanysPieShopHRM.Server.Pages
         public string EmployeeId { get; set; }
 
         public Employee Employee { get; set; } = new Employee();
+        public List<City> Cities { get; set; } = new List<City>();
         public List<Country> Countries { get; set; } = new List<Country>();
+        public List<JobCategory> JobCategories { get; set; } = new List<JobCategory>();
+        public List<Office> Offices { get; set; } = new List<Office>();
+        public List<Pod> Pods { get; set; } = new List<Pod>();
         public List<Region> Regions { get; set; } = new List<Region>();
 
-        public List<JobCategory> JobCategories { get; set; } = new List<JobCategory>();
 
-        protected string CountryId = string.Empty;
+        protected string OfficeId = string.Empty;
         protected string JobCategoryId = string.Empty;
         protected string RegionId = string.Empty;
+        protected string PodId = string.Empty;
 
 
         protected string Message = string.Empty;
@@ -46,23 +56,28 @@ namespace BethanysPieShopHRM.Server.Pages
         protected override async Task OnInitializedAsync()
         {
             Saved = false;
+            Cities = (await CityDataService.GetAllCities()).ToList();
             Countries = (await CountryDataService.GetAllCountries()).ToList();
-            Regions = (await RegionDataService.GetAllRegions()).ToList();
             JobCategories = (await JobCategoryDataService.GetAllJobCategories()).ToList();
+            Offices = (await OfficeDataService.GetAllOffices()).ToList();
+            Pods = (await PodDataService.GetAllPods()).ToList();
+            Regions = (await RegionDataService.GetAllRegions()).ToList();
+
+
 
             int.TryParse(EmployeeId, out var employeeId);
 
             if (employeeId == 0) //new employee is being created
             {
                 //add some defaults
-                Employee = new Employee { CountryId = 1, JobCategoryId = 1, RegionId = 3, JoinedDate = DateTime.Now };
+                Employee = new Employee { OfficeId = 1, JobCategoryId = 1, RegionId = 3 };
             }
             else
             {
                 Employee = await EmployeeDataService.GetEmployeeDetails(int.Parse(EmployeeId));
             }
 
-            CountryId = Employee.CountryId.ToString();
+            OfficeId = Employee.OfficeId.ToString();
             RegionId = Employee.RegionId.ToString();
 
             JobCategoryId = Employee.JobCategoryId.ToString();
@@ -71,7 +86,7 @@ namespace BethanysPieShopHRM.Server.Pages
         protected async Task HandleValidSubmit()
         {
             Saved = false;
-            Employee.CountryId = int.Parse(CountryId);
+            Employee.OfficeId = int.Parse(OfficeId);
             Employee.RegionId = int.Parse(RegionId);
 
             Employee.JobCategoryId = int.Parse(JobCategoryId);

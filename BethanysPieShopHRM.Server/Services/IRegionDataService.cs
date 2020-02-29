@@ -9,6 +9,9 @@ namespace BethanysPieShopHRM.Server.Services
     public interface IRegionDataService
     {
         Task<IEnumerable<Region>> GetAllRegions();
-        Task<Region> GetRegionById(int regionId);
+        Task<Region> GetRegionDetails(int regionId);
+        Task<Region> AddRegion(Region region);
+        Task UpdatRegion(Region region);
+        Task DeleteRegion(int regionId);
     }
 }

@@ -23,7 +23,7 @@ namespace BethanysPieShopHRM.Server.Pages
             Employee = await EmployeeDataService.GetEmployeeDetails(int.Parse(EmployeeId));
             MapMarkers = new List<Marker>
             {
-                new Marker{Description = $"{Employee.FirstName} {Employee.LastName}",  ShowPopup = false, X = Employee.Longitude, Y = Employee.Latitude}
+                new Marker{Description = $"{Employee.FirstName} {Employee.LastName}",  ShowPopup = false, X = Employee.Office.Longitude, Y = Employee.Office.Latitude}
             };
         }
 

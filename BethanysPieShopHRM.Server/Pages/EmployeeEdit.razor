@@ -37,20 +37,29 @@
             </div>
 
             <div class="form-group row">
-                <label for="city" class="col-sm-3">City: </label>
-                <InputText id="city" class="form-control col-sm-8" @bind-Value="@Employee.City" placeholder="Enter city"></InputText>
+                <label for="ManagerFirstName" class="col-sm-3">Office: </label>
+                <InputText id="city" class="form-control col-sm-8" @bind-Value="@Employee.ManagerFirstName" placeholder="Enter ManagerFirstName"></InputText>
 
             </div>
 
             <div class="form-group row">
-                <label for="country" class="col-sm-3">Country: </label>
-                <InputSelect id="country" class="form-control col-sm-8" @bind-Value="@CountryId">
-                    @foreach (var country in Countries)
-                        {
-                        <option value="@country.CountryId">@country.Name</option>
-                        }
-                    /**/
+                <label for="ManagerLastName" class="col-sm-3">Office: </label>
+                <InputText id="city" class="form-control col-sm-8" @bind-Value="@Employee.ManagerLastName" placeholder="Enter ManagerLastName"></InputText>
 
+            </div>
+            <div class="form-group row">
+                <label for="ManagerEmail" class="col-sm-3">ManagerEmail: </label>
+                <InputText id="email" class="form-control col-sm-8" @bind-Value="@Employee.ManagerEmail" placeholder="Enter ManagerEmail"></InputText>
+                <ValidationMessage class="offset-sm-3 col-sm-8" For="@(() => Employee.ManagerEmail)" />
+            </div>
+
+            <div class="form-group row">
+                <label for="office" class="col-sm-3">Office: </label>
+                <InputSelect id="country" class="form-control col-sm-8" @bind-Value="@OfficeId">
+                    @foreach (var office in Offices)
+                        {
+                        <option value="@office.OfficeId">@office.Name</option>
+                        }
                 </InputSelect>
             </div>
 
@@ -61,19 +70,22 @@
                         {
                         <option value="@region.RegionId">@region.Name</option>
                         }
-                    /**/
-
                 </InputSelect>
             </div>
 
             <div class="form-group row">
-                <label for="longitude" class="col-sm-3">Longitude: </label>
-                <InputNumber id="longitude" class="form-control col-sm-8" @bind-Value="@Employee.Longitude"></InputNumber>
+                <label for="JobCategory" class="col-sm-3">JobCategory: </label>
+                <InputSelect id="region" class="form-control col-sm-8" @bind-Value="@JobCategoryId">
+                    @foreach (var jobcategory in JobCategories)
+                        {
+                        <option value="@jobcategory.JobCategoryId">@jobcategory.JobCategoryName</option>
+                        }
+                </InputSelect>
             </div>
 
             <div class="form-group row">
                 <label for="latitude" class="col-sm-3">Latitude: </label>
-                <InputNumber id="latitude" class="form-control col-sm-8" @bind-Value="@Employee.Latitude"></InputNumber>
+                <InputNumber id="latitude" class="form-control col-sm-8" @bind-Value="@Employee.Office.Latitude"></InputNumber>
             </div>
 
 
@@ -84,14 +96,8 @@
                         {
                         <option value="@jobCategory.JobCategoryId">@jobCategory.JobCategoryName</option>
                         }
-                    /**/
+
                 </InputSelect>
-            </div>
-
-
-            <div class="form-group row">
-                <label for="joineddate" class="col-sm-3">Joined on: </label>
-                <InputDate id="joineddate" class="form-control col-sm-8" @bind-Value="@Employee.JoinedDate" placeholder="Enter date joined"></InputDate>
             </div>
 
 

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using BethanysPieShopHRM.Server.Services;
+using BethanysPieShopHRM.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Hosting;
@@ -46,6 +47,19 @@ namespace BethanysPieShopHRM.Server
             {
                 client.BaseAddress = new Uri("https://localhost:44340/");
             });
+            services.AddHttpClient<ICityDataService, CityDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44340/");
+            });
+            services.AddHttpClient<IOfficeDataService, OfficeDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44340/");
+            });
+            services.AddHttpClient<IPodDataService, PodDataService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:44340/");
+            });
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
