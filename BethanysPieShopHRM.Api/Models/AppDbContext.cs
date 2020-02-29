@@ -42,7 +42,7 @@ namespace BethanysPieShopHRM.Api.Models
             modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 2, Name = "Amoreiras", CountryId = 1, CityId = 1, Latitude = 38.723094, Longitude = -9.162429 });
             modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 3, Name = "Tudor", CountryId = 2, CityId = 3, Latitude = 44.437367, Longitude = 26.104955 });
             modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 4, Name = "CITY", CountryId = 2, CityId = 3, Latitude = 44.477758, Longitude = 26.071567 });
-            modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 5, Name = "Globalworth", CountryId = 2, CityId = 3, Latitude = 44.481018, Longitude = 26.117015 });
+            modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 5, Name = "Globalworth", CountryId = 2, CityId = 3, Latitude = 44.480354, Longitude = 26.103968 });
             modelBuilder.Entity<Office>().HasData(new Office { OfficeId = 6, Name = "OPENVILLE", CountryId = 2, CityId = 4, Latitude = 45.766202, Longitude = 21.230267 });
 
 
