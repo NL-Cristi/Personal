@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BethanysPieShopHRM.Shared;
+using Microsoft.EntityFrameworkCore;
 
 namespace BethanysPieShopHRM.Api.Models
 {
@@ -15,7 +16,9 @@ namespace BethanysPieShopHRM.Api.Models
 
         public IEnumerable<Employee> GetAllEmployees()
         {
-            return _appDbContext.Employees;
+           var foundall =  _appDbContext.Employees
+                .Include(a => a.Office).Include(b => b.Region).Include(c => c.JobCategory).Include(e => e.Pod).Include(f => f.Office.Country).Include(g => g.Office.City);
+            return foundall;
         }
 
         public Employee GetEmployeeById(int employeeId)
@@ -36,15 +39,18 @@ namespace BethanysPieShopHRM.Api.Models
 
             if (foundEmployee != null)
             {
-                foundEmployee.CountryId = employee.CountryId;
-                foundEmployee.RegionId = employee.RegionId;
-                foundEmployee.City = employee.City;
-                foundEmployee.Email = employee.Email;
+                foundEmployee.EmployeeId = employee.EmployeeId;
                 foundEmployee.FirstName = employee.FirstName;
                 foundEmployee.LastName = employee.LastName;
+                foundEmployee.Email = employee.Email;
+                foundEmployee.ManagerFirstName = employee.ManagerFirstName;
+                foundEmployee.ManagerLastName = employee.ManagerLastName;
+                foundEmployee.ManagerEmail = employee.ManagerEmail;
                 foundEmployee.JobCategoryId = employee.JobCategoryId;
+                foundEmployee.OfficeId = employee.OfficeId;
+                foundEmployee.RegionId = employee.RegionId;
+                foundEmployee.PodId = employee.PodId;
                 foundEmployee.Comment = employee.Comment;
-                foundEmployee.JoinedDate = employee.JoinedDate;
 
                 _appDbContext.SaveChanges();
 

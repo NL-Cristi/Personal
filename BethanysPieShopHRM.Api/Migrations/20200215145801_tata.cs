@@ -21,6 +21,18 @@ namespace BethanysPieShopHRM.Api.Migrations
                 });
 
             migrationBuilder.CreateTable(
+    name: "Countries",
+    columns: table => new
+    {
+        CountryId = table.Column<int>(nullable: false)
+            .Annotation("SqlServer:Identity", "1, 1"),
+        Name = table.Column<string>(nullable: true)
+    },
+    constraints: table =>
+    {
+        table.PrimaryKey("PK_Countries", x => x.CountryId);
+    });
+            migrationBuilder.CreateTable(
                 name: "JobCategories",
                 columns: table => new
                 {

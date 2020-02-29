@@ -10,5 +10,8 @@ namespace BethanysPieShopHRM.Api.Models
     {
         IEnumerable<Region> GetAllRegions();
         Region GetRegionById(int regionId);
+        Region AddRegion(Region region);
+        Region UpdateRegion(Region region);
+        void DeleteRegion(int regionId);
     }
 }

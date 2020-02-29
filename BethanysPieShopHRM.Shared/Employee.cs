@@ -17,18 +17,21 @@ namespace BethanysPieShopHRM.Shared
         [Required]
         [EmailAddress]
         public string Email { get; set; }
-        public string City { get; set; }
-        public int CountryId { get; set; }
-        public Country Country { get; set; }
+        public string ManagerFirstName { get; set; }
+        public string ManagerLastName { get; set; }
+        public string ManagerEmail { get; set; }
+
+        public int OfficeId { get; set; }
+        public Office Office { get; set; }
         public int RegionId { get; set; }
         public Region Region { get; set; }
-        public string Comment { get; set; }
-        public DateTime? JoinedDate { get; set; }
-        
         public int JobCategoryId { get; set; }
         public JobCategory JobCategory { get; set; }
+        public int PodId { get; set; }
+        public Pod Pod { get; set; }
 
-        public double Latitude { get; set; }
-        public double Longitude { get; set; }
+        //public double Latitude { get; set; }
+        //public double Longitude { get; set; }
+        public string Comment { get; set; }
     }
 }

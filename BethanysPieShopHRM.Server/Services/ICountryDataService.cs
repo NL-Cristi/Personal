@@ -9,6 +9,10 @@ namespace BethanysPieShopHRM.Server.Services
     public interface ICountryDataService
     {
         Task<IEnumerable<Country>> GetAllCountries();
-        Task<Country> GetCountryById(int countryId);
+        Task<Country> GetCountryDetails(int countryId);
+        Task<Country> AddCountry(Country country);
+        Task UpdateCountry(Country country);
+        Task DeleteCountry(int countryId);
+
     }
 }

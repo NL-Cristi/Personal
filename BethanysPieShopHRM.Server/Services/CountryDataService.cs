@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Text;
 using System.Text.Json;
 using System.Threading.Tasks;
 
@@ -17,6 +18,26 @@ namespace BethanysPieShopHRM.Server.Services
             _httpClient = httpClient;
         }
 
+        public async Task<Country> AddCountry(Country country)
+        {
+            var countryJson =
+                            new StringContent(JsonSerializer.Serialize(country), Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync("api/employee", countryJson);
+
+            if (response.IsSuccessStatusCode)
+            {
+                return await JsonSerializer.DeserializeAsync<Country>(await response.Content.ReadAsStreamAsync());
+            }
+
+            return null;
+        }
+
+        public async Task DeleteCountry(int countryId)
+        {
+            await _httpClient.DeleteAsync($"api/country/{countryId}");
+        }
+   
         public async Task<IEnumerable<Country>> GetAllCountries()
         {
             return await JsonSerializer.DeserializeAsync<IEnumerable<Country>>
@@ -27,6 +48,20 @@ namespace BethanysPieShopHRM.Server.Services
         {
             return await JsonSerializer.DeserializeAsync<Country>
                 (await _httpClient.GetStreamAsync($"api/country{countryId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        }
+
+        public async Task<Country> GetCountryDetails(int countryId)
+        {
+            return await JsonSerializer.DeserializeAsync<Country>
+                           (await _httpClient.GetStreamAsync($"api/country/{countryId}"), new JsonSerializerOptions() { PropertyNameCaseInsensitive = true });
+        }
+
+        public async Task UpdateCountry(Country country)
+        {
+            var countryJson =
+                       new StringContent(JsonSerializer.Serialize(country), Encoding.UTF8, "application/json");
+
+            await _httpClient.PutAsync("api/country", countryJson);
         }
     }
 }
