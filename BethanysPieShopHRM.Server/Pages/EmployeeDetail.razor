@@ -1,93 +1,75 @@
 ﻿@page "/memberdetail/{EmployeeId}"
 @inherits EmployeeDetailBase
-@using BethanysPieShopHRM.ComponentsLibrary
 
+@if (Employee == null)
+{
+    <p><em>Loading...</em></p>
+}
+else
+{
 
-    <section class="employee-detail">
-        <h1 class="page-title">Details for @Employee.FirstName @Employee.LastName</h1>
+<section class="employee-detail">
+    <h1 class="page-title">
+        Details for <a class="one" href="https://teams.microsoft.com/l/chat/0/0?users=@Employee.Email" target="_blank">@Employee.FirstName @Employee.LastName</a>
+    </h1>
 
+    <div class="col-12 row">
+        <div class="col-2">
+            <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-responsive rounded-circle employee-detail-img" />
 
+            <a href="@($"membersoverview")" class="btn btn-primary table-btn">
+                <i class="fas fa-home"></i>
+            </a>
+            <a href="@($"memberedit/{Employee.EmployeeId}")" class="btn btn-primary table-btn">
+                <i class="fas fa-edit"></i>
+            </a>
+        </div>
 
-        <div class="col-12 row">
-            <div class="col-2">
-                <img src="@($"https://gillcleerenpluralsight.blob.core.windows.net/person/{Employee.EmployeeId}.jpg")" class="img-responsive rounded-circle employee-detail-img" />
-                
-                    <a href="@($"membersoverview")" class="btn btn-primary table-btn">
-                        <i class="fas fa-home"></i>
-                    </a>
-                    <a href="@($"memberedit/{Employee.EmployeeId}")" class="btn btn-primary table-btn">
-                        <i class="fas fa-edit"></i>
-                    </a>
-                
-            </div>
-            <div class="col-10 row">
-                <div class="col-xs-12 col-sm-8">
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Employee ID</label>
-                        <div class="col-sm-8">
-                            <label type="text" class="form-control-plaintext">@Employee.EmployeeId</label>
-                        </div>
+        <div class="col-10 row">
+            <div class="col-xs-12 col-sm-8">
+                <div class="form-group row">
+                    <label class="col-sm-4 col-form-label">Info</label>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@Employee.FirstName @Employee.LastName</label>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">First name</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.FirstName</label>
-                        </div>
+                    <div class="col-sm-8">
+                        <label href="mailto:@Employee.Email" target="_blank"> @Employee.Email</label>
                     </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Last name</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.LastName</label>
-                        </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmployeePod.Name</label>
                     </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Email</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.Email</label>
-                        </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmpoloyeeJob.JobCategoryName</label>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Role</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.JobCategory.JobCategoryName</label>
-                        </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmployeeRegion.Name</label>
                     </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">POD</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.Pod.Name</label>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Country</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.Office.Country.Name</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">City</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.Office.City.Name</label>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-sm-4 col-form-label">Office</label>
-                        <div class="col-sm-8">
-                            <label type="text" readonly class="form-control-plaintext">@Employee.Office.Name</label>
-                        </div>
-                    </div>
-
-
-
                 </div>
-                <div class="col-xs-12 col-sm-4">
-                    <div class="track-order-map">
-                        <Map Zoom="10" Markers="MapMarkers"></Map>
+                <div class="form-group row">
+                    <div class="col-sm-8">
+                        <label class="col-sm-4 col-form-label">Location</label>
                     </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmployeeOffice.Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmployeeCountry.Name</label>
+                    </div>
+                    <div class="col-sm-8">
+                        <label type="text" class="form-control-plaintext">@EmployeeCity.Name</label>
+                    </div>
+                </div>
+
+
+
+            </div>
+            <div class="col-xs-12 col-sm-4">
+            <div class="track-order-map">
+                    <Map Zoom="10" Markers="MapMarkers"></Map>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
+
+</section>
+}

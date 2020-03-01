@@ -22,7 +22,7 @@ namespace BethanysPieShopHRM.Shared
         public string ManagerEmail { get; set; }
 
         public int OfficeId { get; set; }
-        public Office Office { get; set; }
+        public Office Office { get; set; } 
         public int RegionId { get; set; }
         public Region Region { get; set; }
         public int JobCategoryId { get; set; }
